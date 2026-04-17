@@ -512,7 +512,7 @@ renderVideosLargos();
                 </div>
 
                 <!-- Botón -->
-                <button type="submit"
+                <button type="button" id="btnWhatsapp"
                     class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 py-4 rounded-xl font-bold text-lg transition transform hover:scale-105 shadow-lg mt-4">
                     <i class="fab fa-whatsapp mr-2"></i> Enviar por WhatsApp →
                 </button>
@@ -536,6 +536,7 @@ renderVideosLargos();
     </section>
 
     <script>
+        
         // VIDEO 1
         document.getElementById('video1').addEventListener('click', function () {
             document.getElementById('thumbVideo1').classList.add('hidden');
