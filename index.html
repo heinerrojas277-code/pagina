@@ -227,87 +227,100 @@
 
     <!-- SECCIÓN: SHORTS -->
    <section id="shorts" class="py-24 px-4 bg-black">
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-5xl mx-auto">
+
+        <div class="text-center mb-12">
+            <span class="text-pink-500 text-sm font-semibold uppercase tracking-wider">Short - Reel - Tiktok</span>
+            <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Vertical, rápido, adictivo</h2>
+        </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
             <!-- SHORT 1 -->
-            <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 group">
+            <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="short1">
                 <div class="relative aspect-[9/16] overflow-hidden">
 
-                    <iframe src="https://www.youtube.com/embed/0Mfu1M1lVzY"
-                        class="w-full h-full pointer-events-none group-hover:pointer-events-auto"
-                        frameborder="0"
-                        allow="autoplay; encrypted-media"
-                        allowfullscreen>
-                    </iframe>
+                    <img id="thumbShort1"
+                        src="https://img.youtube.com/vi/0Mfu1M1lVzY/hqdefault.jpg"
+                        class="w-full h-full object-cover">
 
-                    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-black/10 transition">
-                        <div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
-                            <i class="fas fa-play text-white text-xl ml-1"></i>
+                    <div id="overlayShort1"
+                        class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center">
+
+                        <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-play text-black text-xl ml-1"></i>
                         </div>
+
+                        <p class="text-yellow-400 mt-3 text-sm tracking-widest">CLICK TO WATCH</p>
                     </div>
 
+                    <div id="playerShort1" class="absolute inset-0 hidden"></div>
                 </div>
             </div>
 
             <!-- SHORT 2 -->
-            <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 group">
+            <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="short2">
                 <div class="relative aspect-[9/16] overflow-hidden">
 
-                    <iframe src="https://www.youtube.com/embed/MoccyJraKKg"
-                        class="w-full h-full pointer-events-none group-hover:pointer-events-auto"
-                        frameborder="0"
-                        allow="autoplay; encrypted-media"
-                        allowfullscreen>
-                    </iframe>
+                    <img id="thumbShort2"
+                        src="https://img.youtube.com/vi/MoccyJraKKg/hqdefault.jpg"
+                        class="w-full h-full object-cover">
 
-                    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-black/10 transition">
-                        <div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
-                            <i class="fas fa-play text-white text-xl ml-1"></i>
+                    <div id="overlayShort2"
+                        class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center">
+
+                        <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-play text-black text-xl ml-1"></i>
                         </div>
+
+                        <p class="text-yellow-400 mt-3 text-sm tracking-widest">CLICK TO WATCH</p>
                     </div>
 
+                    <div id="playerShort2" class="absolute inset-0 hidden"></div>
                 </div>
             </div>
 
-            <!-- SHORT 3 (CAMBIA ESTE LINK) -->
-            <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 group">
+            <!-- SHORT 3 (EL QUE YA TIENES) -->
+            <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="short3">
                 <div class="relative aspect-[9/16] overflow-hidden">
 
-                    <iframe src="https://www.youtube.com/embed/zuGRID-wy9Y"
-                        class="w-full h-full pointer-events-none group-hover:pointer-events-auto"
-                        frameborder="0"
-                        allow="autoplay; encrypted-media"
-                        allowfullscreen>
-                    </iframe>
+                    <img id="thumbShort3"
+                        src="https://img.youtube.com/vi/zuGRID-wy9Y/hqdefault.jpg"
+                        class="w-full h-full object-cover">
 
-                    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-black/10 transition">
-                        <div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
-                            <i class="fas fa-play text-white text-xl ml-1"></i>
+                    <div id="overlayShort3"
+                        class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center">
+
+                        <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-play text-black text-xl ml-1"></i>
                         </div>
+
+                        <p class="text-yellow-400 mt-3 text-sm tracking-widest">CLICK TO WATCH</p>
                     </div>
 
+                    <div id="playerShort3" class="absolute inset-0 hidden"></div>
                 </div>
             </div>
 
-            <!-- SHORT 4 -->
-            <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 group">
+            <!-- SHORT 4 (CAMBIA ESTE LINK POR EL DE ANDRES GARZA) -->
+            <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="short4">
                 <div class="relative aspect-[9/16] overflow-hidden">
 
-                    <iframe src="https://www.youtube.com/embed/L-6jOXmhX1c"
-                        class="w-full h-full pointer-events-none group-hover:pointer-events-auto"
-                        frameborder="0"
-                        allow="autoplay; encrypted-media"
-                        allowfullscreen>
-                    </iframe>
+                    <img id="thumbShort4"
+                        src="https://img.youtube.com/vi/L-6jOXmhX1c/hqdefault.jpg"
+                        class="w-full h-full object-cover">
 
-                    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-black/10 transition">
-                        <div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
-                            <i class="fas fa-play text-white text-xl ml-1"></i>
+                    <div id="overlayShort4"
+                        class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center">
+
+                        <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-play text-black text-xl ml-1"></i>
                         </div>
+
+                        <p class="text-yellow-400 mt-3 text-sm tracking-widest">CLICK TO WATCH</p>
                     </div>
 
+                    <div id="playerShort4" class="absolute inset-0 hidden"></div>
                 </div>
             </div>
 
