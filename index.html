@@ -686,21 +686,18 @@ allowfullscreen>
             });
         }
 
-        document.getElementById("formContacto").addEventListener("submit", function (e) {
-            e.preventDefault();
+        document.getElementById("btnWhatsapp").addEventListener("click", function () {
 
-            // Obtener valores
-            const nombre = document.getElementById("nombre").value;
-            const email = document.getElementById("email").value;
-            const canal = document.getElementById("canal").value;
-            const redes = document.getElementById("redes").value;
-            const referencia = document.getElementById("referencia").value;
-            const pago = document.getElementById("pago").value;
-            const presupuestoLargo = document.getElementById("presupuesto_largo").value;
-            const presupuestoCorto = document.getElementById("presupuesto_corto").value;
+    const nombre = document.getElementById("nombre").value || "No especificado";
+    const email = document.getElementById("email").value || "No especificado";
+    const canal = document.getElementById("canal").value || "No especificado";
+    const redes = document.getElementById("redes").value || "No especificado";
+    const referencia = document.getElementById("referencia").value || "No especificado";
+    const pago = document.getElementById("pago").value || "No especificado";
+    const presupuestoLargo = document.getElementById("presupuesto_largo").value || "No especificado";
+    const presupuestoCorto = document.getElementById("presupuesto_corto").value || "No especificado";
 
-            // Armar mensaje (ordenado y más pro)
-            const mensaje = `Hola, quiero información:
+    const mensaje = `Hola, quiero información:
 
 - Nombre: ${nombre}
 - Email: ${email}
@@ -712,24 +709,15 @@ allowfullscreen>
 
 - Método de pago: ${pago}
 
-- Presupuesto video largo: ${presupuestoLargo} USD
-- Presupuesto shorts: ${presupuestoCorto} USD `;
+- Presupuesto video largo: ${presupuestoLargo}
+- Presupuesto shorts: ${presupuestoCorto}`;
 
-            // TU NÚMERO
-            const numero = "51937432613";
+    const numero = "51937432613";
 
-            // Crear link
-            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
-            // Abrir WhatsApp
-            window.open(url, "_blank");
-        });
-
-        document.getElementById('btnContacto').addEventListener('click', () => {
-            document.getElementById('contacto').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
+    window.open(url, "_blank");
+});
     </script>
 </body>
 
