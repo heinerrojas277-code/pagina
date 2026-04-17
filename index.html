@@ -1,1 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRANKI'S PORTAFOLIO | VIDEOS </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fadeUp {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .animate-scaleIn {
+            animation: scaleIn 0.6s ease forwards;
+        }
+
+        .animate-slideLeft {
+            animation: slideInLeft 0.7s ease forwards;
+        }
+
+        .animate-slideRight {
+            animation: slideInRight 0.7s ease forwards;
+        }
+
+        /* Tarjetas de video */
+        .video-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.3);
+        }
+
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .video-card:hover .play-icon {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .video-overlay {
+            transition: all 0.3s ease;
+        }
+
+        .play-icon {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Shorts card - formato vertical */
+        .shorts-card {
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .shorts-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Modo oscuro/claro */
+        .light-mode {
+            background-color: #f8f9fa;
+            color: #1a1a1a;
+        }
+
+        body.light-mode .bg-gray-900 {
+            background-color: #ffffff;
+        }
+
+        body.light-mode .bg-black {
+            background-color: #f8f9fa;
+        }
+
+        body.light-mode .bg-gray-800 {
+            background-color: #f1f3f5;
+        }
+
+        body.light-mode .text-gray-400 {
+            color: #6c757d;
+        }
+
+        body.light-mode .border-gray-700 {
+            border-color: #dee2e6;
+        }
+
+        body.light-mode .video-card,
+        body.light-mode .shorts-card {
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #a855f7;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white transition-colors duration-300">
+    <!-- Menú hamburguesa -->
+    <button id="menuBtn"
+        class="fixed top-6 right-24 z-50 bg-purple-600 p-3 rounded-full md:hidden shadow-lg transition transform hover:scale-110">
+        <i class="fas fa-bars text-white text-xl"></i>
+    </button>
+
+    <nav id="mobileMenu"
+        class="fixed top-0 right-0 w-80 h-full bg-black bg-opacity-95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-500 md:hidden pt-24 px-8">
+        <ul class="space-y-6 text-white text-lg">
+            <li><a href="#inicio" class="hover:text-purple-500 transition block py-2">Inicio</a></li>
+            <li><a href="#videos" class="hover:text-purple-500 transition block py-2">Videos Largos</a></li>
+            <li><a href="#shorts" class="hover:text-purple-500 transition block py-2">Shorts</a></li>
+            <li><a href="#mecanicas" class="hover:text-purple-500 transition block py-2">Cómo edito</a></li>
+            <li><a href="#proceso" class="hover:text-purple-500 transition block py-2">El proceso</a></li>
+            <li><a href="#contacto" class="hover:text-purple-500 transition block py-2">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio"
+        class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full blur-3xl animate-pulse"></div>
+            <div
+                class="absolute bottom-20 right-10 w-96 h-96 bg-pink-600 rounded-full blur-3xl animate-pulse delay-1000">
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight animate-fadeUp">
+                Edición que
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">atrapa</span>,
+                <br>ritmo que
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">engancha</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mt-8 max-w-3xl mx-auto leading-relaxed animate-slideLeft">
+                Cortes sincronizados, zooms dinámicos y nada de silencios incómodos.
+                <span class="text-purple-400 font-semibold">Si tu video se ralentiza, el espectador se va.</span>
+            </p>
+            <button id="btnVerTrabajo"
+                class="mt-10 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 animate-scaleIn shadow-lg">
+                <i class="fas fa-play mr-2"></i> VER MI TRABAJO →
+            </button>
+
+            <button id="btnContacto"
+                class="mt-4 ml-0 md:ml-4 border border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg">
+                <i class="fas fa-paper-plane mr-2"></i> CONTACTAR →
+            </button>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: SHORTS -->
+    <section id="shorts" class="py-24 px-4 bg-black">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-pink-500 text-sm font-semibold uppercase tracking-wider">YouTube Shorts</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Vertical, rápido, adictivo</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Shorts que la gente ve una y otra vez. El formato corto
+                    también necesita ritmo.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <!-- Short 5 - YouTube -->
+                <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900">
+                    <div class="relative aspect-[9/16]">
+                        <iframe src="https://www.youtube.com/embed/0Mfu1M1lVzY" class="w-full h-full" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen>
+                        </iframe>
+
+                        <div class="absolute bottom-2 left-2 bg-black bg-opacity-70 rounded-full px-2 py-1 text-xs">
+                            <i class="fab fa-youtube text-red-500"></i> YouTube
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-sm text-gray-300 font-semibold">¿El secreto para facturar 300k? Nadie te dice
+                            esto</p>
+                    </div>
+                </div>
+
+                <!-- Short 6 - YouTube -->
+                <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900">
+                    <div class="relative aspect-[9/16]">
+                        <iframe src="https://www.youtube.com/embed/MoccyJraKKg" class="w-full h-full" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen>
+                        </iframe>
+
+                        <div class="absolute bottom-2 left-2 bg-black bg-opacity-70 rounded-full px-2 py-1 text-xs">
+                            <i class="fab fa-youtube text-red-500"></i> YouTube
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-sm text-gray-300 font-semibold">Te mintieron sobre la proteína post-entreno 💀
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Short 3 - YouTube -->
+                <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900">
+                    <div class="relative aspect-[9/16]">
+                        <iframe src="https://www.youtube.com/embed/BVCUx9T675U" class="w-full h-full" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen>
+                        </iframe>
+
+                        <div class="absolute bottom-2 left-2 bg-black bg-opacity-70 rounded-full px-2 py-1 text-xs">
+                            <i class="fab fa-youtube text-red-500"></i> YouTube
+                        </div>
+                    </div>
+
+                    <div class="p-3">
+                        <p class="text-sm text-gray-300 font-semibold">Minero gana 300K$ en un día con Bitcoin</p>
+                    </div>
+                </div>
+
+                <!-- Short 4 - YouTube -->
+                <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900">
+                    <div class="relative aspect-[9/16]">
+                        <iframe src="https://www.youtube.com/embed/L-6jOXmhX1c" class="w-full h-full" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen>
+                        </iframe>
+
+                        <div class="absolute bottom-2 left-2 bg-black bg-opacity-70 rounded-full px-2 py-1 text-xs">
+                            <i class="fab fa-youtube text-red-500"></i> YouTube
+                        </div>
+                    </div>
+
+                    <div class="p-3">
+                        <p class="text-sm text-gray-300 font-semibold">Como GANAR DINERO Siendo Menor 💵</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos" class="py-24 px-4 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-5xl mx-auto">
+            <!-- TEXTO CENTRADO -->
+            <div class="text-center mb-12">
+                <span class="text-purple-500 text-sm font-semibold uppercase tracking-wider">YouTube Long Form</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Videos largos que no aburren</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Corto lo innecesario, dejo lo importante y mantengo el ritmo para que el video fluya.
+                    Así la gente no se va a la mitad.
+                </p>
+            </div>
+            <!-- VIDEO 1 -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="video-card group rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="video1">
+                    <div class="relative overflow-hidden h-64 md:h-80">
+                        <img id="thumbVideo1" src="https://img.youtube.com/vi/Yaf0hmbswM0/hqdefault.jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                        <div id="overlayVideo1"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
+                            <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-play text-white text-3xl ml-1"></i>
+                            </div>
+                        </div>
+
+                        <div id="playerVideo1" class="absolute inset-0 hidden"></div>
+
+                        <div class="absolute bottom-2 left-2 bg-black bg-opacity-70 px-2 py-1 text-xs">
+                            <i class="fab fa-youtube text-red-500"></i> YouTube
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold text-white mb-1">El barco que podría abrir Ormuz… está
+                            escondido a 6.000 km</h3>
+                    </div>
+                </div>
+
+                <!-- VIDEO 2 -->
+                <div class="video-card group rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="video2">
+                    <div class="relative overflow-hidden h-64 md:h-80">
+                        <img id="thumbVideo2" src="https://img.youtube.com/vi/s4SFarjquUk/hqdefault.jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                        <div id="overlayVideo2"
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
+                            <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-play text-white text-3xl ml-1"></i>
+                            </div>
+                        </div>
+
+                        <div id="playerVideo2" class="absolute inset-0 hidden"></div>
+
+                        <div class="absolute bottom-2 left-2 bg-black bg-opacity-70 px-2 py-1 text-xs">
+                            <i class="fab fa-youtube text-red-500"></i> YouTube
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold text-white mb-1">Por qué Irán pudo derribar un F-15E… después
+                            de perder su defensa aérea</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Mechanics - texto más natural -->
+    <section id="mecanicas" class="py-24 px-4 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">Cómo lo hago</h2>
+            <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto">Tres cosas que hago para que tu video no se
+                saltee</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="group text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-black hover:from-purple-900 hover:to-black transition-all duration-500 transform hover:scale-105">
+                    <div
+                        class="w-20 h-20 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-12 group-hover:rotate-45 transition-all duration-500">
+                        <i
+                            class="fas fa-cut text-3xl text-white transform -rotate-12 group-hover:rotate-0 transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Corto lo que sobra</h3>
+                    <p class="text-gray-400 leading-relaxed">Cada pausa larga, cada "ehhh", cada silencio incómodo
+                        desaparece. El video fluye sin parar.</p>
+                </div>
+
+                <div
+                    class="group text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-black hover:from-purple-900 hover:to-black transition-all duration-500 transform hover:scale-105">
+                    <div
+                        class="w-20 h-20 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-12 group-hover:rotate-45 transition-all duration-500">
+                        <i
+                            class="fas fa-closed-captioning text-3xl text-white transform -rotate-12 group-hover:rotate-0 transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Subtítulos que se mueven</h3>
+                    <p class="text-gray-400 leading-relaxed">Palabra por palabra, con colores y animaciones. La
+                        gente
+                        lee sin darse cuenta y se queda viendo.</p>
+                </div>
+
+                <div
+                    class="group text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900 to-black hover:from-purple-900 hover:to-black transition-all duration-500 transform hover:scale-105">
+                    <div
+                        class="w-20 h-20 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-12 group-hover:rotate-45 transition-all duration-500">
+                        <i
+                            class="fas fa-video text-3xl text-white transform -rotate-12 group-hover:rotate-0 transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">La cámara nunca se queda quieta</h3>
+                    <p class="text-gray-400 leading-relaxed">Zooms suaves, movimientos que siguen la música. El ojo
+                        del
+                        espectador siempre tiene algo nuevo que ver.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="proceso" class="py-24 px-4 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">Así trabajo</h2>
+            <p class="text-gray-400 text-center mb-16">Simple, sin vueltas</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center group">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-6 transform group-hover:scale-110 transition-all duration-300 shadow-lg">
+                        1
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Me envías el material</h3>
+                    <p class="text-gray-400">Como te quede más cómodo.</p>
+                </div>
+                <div class="text-center group">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-6 transform group-hover:scale-110 transition-all duration-300 shadow-lg">
+                        2
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Yo edito con todo</h3>
+                    <p class="text-gray-400">Cortes, zooms, subtítulos, efectos, música. Todo lo que necesita tu
+                        video.
+                    </p>
+                </div>
+                <div class="text-center group">
+                    <div
+                        class="w-24 h-24 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-6 transform group-hover:scale-110 transition-all duration-300 shadow-lg">
+                        3
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Subes y creces</h3>
+                    <p class="text-gray-400">Recibes el video listo. Más retención, más vistas, más subscribers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario -->
+    <section id="contacto" class="py-24 px-4">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                Deja de perder gente en los primeros 30 segundos
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Cuéntame qué necesitas y te ayudo.
+            </p>
+
+            <form id="formContacto" class="space-y-5 text-left">
+
+                <!-- Nombre + Email -->
+                <div class="grid md:grid-cols-2 gap-5">
+                    <input type="text" id="nombre" required placeholder="Nombre (ej: Juan Pérez)"
+                        class="w-full p-4 rounded-xl bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:border-purple-500 outline-none transition">
+
+                    <input type="email" id="email" required placeholder="Email (ej: correo@gmail.com)"
+                        class="w-full p-4 rounded-xl bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:border-purple-500 outline-none transition">
+                </div>
+
+                <!-- Canal -->
+                <input type="url" id="canal"
+                    placeholder="Canal de YouTube o red social (ej: https://youtube.com/@tuusuario)"
+                    class="w-full p-4 rounded-xl bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:border-purple-500 outline-none transition">
+
+                <!-- Redes -->
+                <input type="url" id="redes" placeholder="Otras redes sociales (Instagram, TikTok, etc.)"
+                    class="w-full p-4 rounded-xl bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:border-purple-500 outline-none transition">
+
+                <input type="text" id="referencia" placeholder="Referencia (video o canal de YouTube, TikTok, etc.)"
+                    class="w-full p-4 rounded-xl bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:border-purple-500 outline-none transition">
+
+                <!-- Método de pago -->
+                <input type="text" id="pago" placeholder="Método de pago (Yape, Transferencia, PayPal, Binance, etc.)"
+                    class="w-full p-4 rounded-xl bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:border-purple-500 outline-none transition">
+
+                <!-- Presupuestos -->
+                <div class="grid md:grid-cols-2 gap-5">
+                    <input type="text" id="presupuesto_largo"
+                        placeholder="Presupuesto video largo (ej: $150 USD o S/500)"
+                        class="w-full p-4 rounded-xl bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:border-purple-500 outline-none transition">
+
+                    <input type="text" id="presupuesto_corto" placeholder="Presupuesto shorts (ej: $50 USD o S/150)"
+                        class="w-full p-4 rounded-xl bg-gray-800 text-white placeholder-gray-400 border border-gray-700 focus:border-purple-500 outline-none transition">
+                </div>
+
+                <!-- Botón -->
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 py-4 rounded-xl font-bold text-lg transition transform hover:scale-105 shadow-lg mt-4">
+                    <i class="fab fa-whatsapp mr-2"></i> Enviar por WhatsApp →
+                </button>
+            </form>
+
+            <div class="mt-10 text-center">
+                <p class="text-gray-400 mb-4">
+                    O si prefieres, contáctame por correo:
+                </p>
+
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=heinerrojas277@gmail.com&su=Quiero%20editar%20mis%20videos"
+                    target="_blank">
+                    Enviar correo a heinerrojas277@gmail.com
+                </a>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <p class="text-gray-500 text-sm">© 2026 FRANKI · Edición que engancha</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // VIDEO 1
+        document.getElementById('video1').addEventListener('click', function () {
+            document.getElementById('thumbVideo1').classList.add('hidden');
+            document.getElementById('overlayVideo1').classList.add('hidden');
+
+            document.getElementById('playerVideo1').innerHTML = `
+        <iframe 
+        src="https://www.youtube.com/embed/Yaf0hmbswM0?autoplay=1&mute=1"
+        class="w-full h-full"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+        </iframe>
+    `;
+
+            document.getElementById('playerVideo1').classList.remove('hidden');
+        });
+
+        // VIDEO 2
+        document.getElementById('video2').addEventListener('click', function () {
+            document.getElementById('thumbVideo2').classList.add('hidden');
+            document.getElementById('overlayVideo2').classList.add('hidden');
+
+            document.getElementById('playerVideo2').innerHTML = `
+        <iframe 
+        src="https://www.youtube.com/embed/s4SFarjquUk?autoplay=1&mute=1"
+        class="w-full h-full"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+        </iframe>
+    `;
+
+            document.getElementById('playerVideo2').classList.remove('hidden');
+        });
+
+        document.getElementById('btnVerTrabajo').addEventListener('click', () => {
+            document.getElementById('shorts').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Animación al scroll
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeUp');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+        // Contadores animados
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    let current = 0;
+                    const increment = target / 60;
+                    const updateCounter = () => {
+                        if (current < target) {
+                            current += increment;
+                            counter.innerText = Math.min(Math.ceil(current), target);
+                            setTimeout(updateCounter, 20);
+                        }
+                    };
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // Menú hamburguesa
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('translate-x-full');
+            menuBtn.innerHTML = menuOpen ? '<i class="fas fa-times text-white text-xl"></i>' : '<i class="fas fa-bars text-white text-xl"></i>';
+        });
+
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+                menuOpen = false;
+                menuBtn.innerHTML = '<i class="fas fa-bars text-white text-xl"></i>';
+            });
+        });
+
+        // Short 1
+        const short1 = document.getElementById('short1');
+        const thumb1 = document.getElementById('thumb1');
+        const player1 = document.getElementById('player1');
+
+        if (short1) {
+            short1.addEventListener('click', function () {
+                thumb1.classList.add('hidden');
+                player1.classList.remove('hidden');
+            });
+        }
+
+        // Short 2
+        const short2 = document.getElementById('short2');
+        const thumb2 = document.getElementById('thumb2');
+        const player2 = document.getElementById('player2');
+
+        if (short2) {
+            short2.addEventListener('click', function () {
+                thumb2.classList.add('hidden');
+                player2.classList.remove('hidden');
+            });
+        }
+
+        const videoLargo = document.getElementById('videoLargo');
+        const thumbVideo = document.getElementById('thumbVideo');
+        const playerVideo = document.getElementById('playerVideo');
+        const overlayVideo = document.getElementById('overlayVideo');
+
+        if (videoLargo) {
+            videoLargo.addEventListener('click', function () {
+
+                // Oculta miniatura y overlay
+                thumbVideo.classList.add('hidden');
+                overlayVideo.classList.add('hidden');
+
+                playerVideo.innerHTML = `
+<iframe 
+src="https://drive.google.com/file/d/10yGFrmboAQ6Dz1lMc5-tSKES0Gas6FL9/preview?autoplay=1&mute=1"
+class="w-full h-full"
+frameborder="0"
+allow="autoplay"
+allowfullscreen>
+</iframe>
+`;
+
+                playerVideo.classList.remove('hidden');
+            });
+        }
+
+        document.getElementById("formContacto").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Obtener valores
+            const nombre = document.getElementById("nombre").value;
+            const email = document.getElementById("email").value;
+            const canal = document.getElementById("canal").value;
+            const redes = document.getElementById("redes").value;
+            const referencia = document.getElementById("referencia").value;
+            const pago = document.getElementById("pago").value;
+            const presupuestoLargo = document.getElementById("presupuesto_largo").value;
+            const presupuestoCorto = document.getElementById("presupuesto_corto").value;
+
+            // Armar mensaje (ordenado y más pro)
+            const mensaje = `Hola, quiero información:
+
+- Nombre: ${nombre}
+- Email: ${email}
+
+- Canal: ${canal}
+- Redes: ${redes}
+
+- Referencia: ${referencia}
+
+- Método de pago: ${pago}
+
+- Presupuesto video largo: ${presupuestoLargo} USD
+- Presupuesto shorts: ${presupuestoCorto} USD `;
+
+            // TU NÚMERO
+            const numero = "51937432613";
+
+            // Crear link
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+            // Abrir WhatsApp
+            window.open(url, "_blank");
+        });
+
+        document.getElementById('btnContacto').addEventListener('click', () => {
+            document.getElementById('contacto').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>
