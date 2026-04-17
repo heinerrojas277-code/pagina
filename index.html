@@ -225,8 +225,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN: SHORTS -->
-  <!-- SECCIÓN SHORTS AUTOMÁTICA -->
+    <!-- SECCIÓN SHORTS -->
 <section id="shorts" class="py-24 px-4 bg-black">
     <div class="max-w-6xl mx-auto">
 
@@ -239,7 +238,6 @@
             </h2>
         </div>
 
-        <!-- GRID AUTOMÁTICO -->
         <div id="shortsContainer"
             class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         </div>
@@ -247,7 +245,31 @@
     </div>
 </section>
 
+<!-- SECCIÓN VIDEOS LARGOS -->
+<section id="videos" class="py-24 px-4 bg-black">
+    <div class="max-w-7xl mx-auto">
+
+        <div class="text-center mb-12">
+            <span class="text-purple-500 text-sm font-semibold uppercase tracking-wider">
+                Formato largo - Horizontal
+            </span>
+            <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">
+                Videos largos que no aburren
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Corto lo innecesario, dejo lo importante y mantengo el ritmo.
+            </p>
+        </div>
+
+        <div id="videosContainer"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        </div>
+
+    </div>
+</section>
+
 <script>
+// ================= LINKS =================
 const shortsLinks = [
     "https://youtube.com/shorts/0Mfu1M1lVzY",
     "https://youtube.com/shorts/MoccyJraKKg",
@@ -256,7 +278,12 @@ const shortsLinks = [
     "https://youtube.com/shorts/J0atyeX9Yv8"
 ];
 
-// sacar ID del video
+const videosLargos = [
+    "https://www.youtube.com/watch?v=Yaf0hmbswM0",
+    "https://www.youtube.com/watch?v=s4SFarjquUk"
+];
+
+// ================= SACAR ID =================
 function getId(url) {
     if (url.includes("/shorts/")) return url.split("/shorts/")[1].split("?")[0];
     if (url.includes("youtu.be/")) return url.split("youtu.be/")[1].split("?")[0];
@@ -264,16 +291,16 @@ function getId(url) {
     return url;
 }
 
+// ================= SHORTS =================
 function renderShorts() {
     const container = document.getElementById("shortsContainer");
     container.innerHTML = "";
 
-    shortsLinks.forEach((url) => {
+    shortsLinks.forEach(url => {
         const id = getId(url);
 
         const card = document.createElement("div");
-        card.className =
-            "relative aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group";
+        card.className = "relative aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group";
 
         card.innerHTML = `
             <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg"
@@ -302,24 +329,16 @@ function renderShorts() {
     });
 }
 
-renderShorts();
-    const videosLargos = [
-    "https://www.youtube.com/watch?v=Yaf0hmbswM0",
-    "https://www.youtube.com/watch?v=s4SFarjquUk"
-];
-
+// ================= VIDEOS LARGOS =================
 function renderVideosLargos() {
     const container = document.getElementById("videosContainer");
-    if (!container) return;
-
     container.innerHTML = "";
 
-    videosLargos.reverse().forEach((url) => {
+    [...videosLargos].reverse().forEach(url => {
         const id = getId(url);
 
         const card = document.createElement("div");
-        card.className =
-            "relative rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group";
+        card.className = "relative rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group";
 
         card.innerHTML = `
             <div class="relative aspect-video overflow-hidden">
@@ -350,31 +369,10 @@ function renderVideosLargos() {
     });
 }
 
+// ================= INIT =================
+renderShorts();
 renderVideosLargos();
 </script>
-            <!-- VIDEOS LARGOS AUTOMÁTICOS -->
-<section id="videos" class="py-24 px-4 bg-black">
-    <div class="max-w-7xl mx-auto">
-
-        <div class="text-center mb-12">
-            <span class="text-purple-500 text-sm font-semibold uppercase tracking-wider">
-                Formato largo - Horizontal
-            </span>
-            <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">
-                Videos largos que no aburren
-            </h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">
-                Corto lo innecesario, dejo lo importante y mantengo el ritmo.
-            </p>
-        </div>
-
-        <div id="videosContainer"
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        </div>
-
-    </div>
-</section>
-    </section>
 
     <!-- The Mechanics - texto más natural -->
     <section id="mecanicas" class="py-24 px-4 bg-gradient-to-b from-gray-900 to-black">
