@@ -239,14 +239,12 @@
             <!-- SHORT 1 -->
             <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="short1">
                 <div class="relative aspect-[9/16] overflow-hidden">
-
                     <img id="thumbShort1"
                         src="https://img.youtube.com/vi/0Mfu1M1lVzY/hqdefault.jpg"
                         class="w-full h-full object-cover">
 
                     <div id="overlayShort1"
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-
                         <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center">
                             <i class="fas fa-play text-black text-xl ml-1"></i>
                         </div>
@@ -259,14 +257,12 @@
             <!-- SHORT 2 -->
             <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="short2">
                 <div class="relative aspect-[9/16] overflow-hidden">
-
                     <img id="thumbShort2"
                         src="https://img.youtube.com/vi/MoccyJraKKg/hqdefault.jpg"
                         class="w-full h-full object-cover">
 
                     <div id="overlayShort2"
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-
                         <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center">
                             <i class="fas fa-play text-black text-xl ml-1"></i>
                         </div>
@@ -279,14 +275,12 @@
             <!-- SHORT 3 -->
             <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="short3">
                 <div class="relative aspect-[9/16] overflow-hidden">
-
                     <img id="thumbShort3"
                         src="https://img.youtube.com/vi/zuGRID-wy9Y/hqdefault.jpg"
                         class="w-full h-full object-cover">
 
                     <div id="overlayShort3"
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-
                         <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center">
                             <i class="fas fa-play text-black text-xl ml-1"></i>
                         </div>
@@ -296,17 +290,15 @@
                 </div>
             </div>
 
-            <!-- SHORT 4 (CAMBIA ESTE) -->
+            <!-- SHORT 4 -->
             <div class="shorts-card rounded-2xl overflow-hidden bg-gray-900 cursor-pointer" id="short4">
                 <div class="relative aspect-[9/16] overflow-hidden">
-
                     <img id="thumbShort4"
                         src="https://img.youtube.com/vi/L-6jOXmhX1c/hqdefault.jpg"
                         class="w-full h-full object-cover">
 
                     <div id="overlayShort4"
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-
                         <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center">
                             <i class="fas fa-play text-black text-xl ml-1"></i>
                         </div>
@@ -319,7 +311,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT INCLUIDO (AQUÍ MISMO) -->
+    <!-- SCRIPT (YA CON AUDIO ACTIVADO) -->
     <script>
         function activarShort(id, videoId) {
             const short = document.getElementById(id);
@@ -327,12 +319,16 @@
             if (short) {
                 short.addEventListener('click', function () {
 
-                    document.getElementById('thumb' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('hidden');
-                    document.getElementById('overlay' + id.charAt(0).toUpperCase() + id.slice(1)).classList.add('hidden');
+                    const thumb = document.getElementById('thumb' + id.charAt(0).toUpperCase() + id.slice(1));
+                    const overlay = document.getElementById('overlay' + id.charAt(0).toUpperCase() + id.slice(1));
+                    const player = document.getElementById('player' + id.charAt(0).toUpperCase() + id.slice(1));
 
-                    document.getElementById('player' + id.charAt(0).toUpperCase() + id.slice(1)).innerHTML = `
+                    if (thumb) thumb.classList.add('hidden');
+                    if (overlay) overlay.classList.add('hidden');
+
+                    player.innerHTML = `
                         <iframe 
-                        src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0"
+                        src="https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&modestbranding=1&rel=0"
                         class="w-full h-full"
                         frameborder="0"
                         allow="autoplay; encrypted-media"
@@ -340,7 +336,7 @@
                         </iframe>
                     `;
 
-                    document.getElementById('player' + id.charAt(0).toUpperCase() + id.slice(1)).classList.remove('hidden');
+                    player.classList.remove('hidden');
                 });
             }
         }
@@ -348,7 +344,7 @@
         activarShort('short1', '0Mfu1M1lVzY');
         activarShort('short2', 'MoccyJraKKg');
         activarShort('short3', 'zuGRID-wy9Y');
-        activarShort('short4', 'L-6jOXmhX1c'); // CAMBIA ESTE
+        activarShort('short4', 'L-6jOXmhX1c');
     </script>
 
 </section>
