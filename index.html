@@ -226,104 +226,83 @@
     </section>
 
     <!-- SECCIÓN: SHORTS -->
-   <!-- SECCIÓN: SHORTS -->
+  <!-- SECCIÓN SHORTS AUTOMÁTICA -->
 <section id="shorts" class="py-24 px-4 bg-black">
     <div class="max-w-6xl mx-auto">
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-
-            <!-- SHORT 1 -->
-            <div onclick="playShort('short1','0Mfu1M1lVzY')"
-                class="relative aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group"
-                id="short1">
-
-                <img src="https://img.youtube.com/vi/0Mfu1M1lVzY/hqdefault.jpg"
-                    class="w-full h-full object-cover">
-
-                <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition">
-                    <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                        <i class="fas fa-play text-white ml-1"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SHORT 2 -->
-            <div onclick="playShort('short2','MoccyJraKKg')"
-                class="relative aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group"
-                id="short2">
-
-                <img src="https://img.youtube.com/vi/MoccyJraKKg/hqdefault.jpg"
-                    class="w-full h-full object-cover">
-
-                <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition">
-                    <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                        <i class="fas fa-play text-white ml-1"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SHORT 3 -->
-            <div onclick="playShort('short3','ax7iJvqDH-g')"
-                class="relative aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group"
-                id="short3">
-
-                <img src="https://img.youtube.com/vi/ax7iJvqDH-g/hqdefault.jpg"
-                    class="w-full h-full object-cover">
-
-                <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition">
-                    <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                        <i class="fas fa-play text-white ml-1"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SHORT 4 -->
-            <div onclick="playShort('short4','L-6jOXmhX1c')"
-                class="relative aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group"
-                id="short4">
-
-                <img src="https://img.youtube.com/vi/L-6jOXmhX1c/hqdefault.jpg"
-                    class="w-full h-full object-cover">
-
-                <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition">
-                    <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                        <i class="fas fa-play text-white ml-1"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SHORT 5 (NUEVO) -->
-            <div onclick="playShort('short5','J0atyeX9Yv8')"
-                class="relative aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group"
-                id="short5">
-
-                <img src="https://img.youtube.com/vi/J0atyeX9Yv8/hqdefault.jpg"
-                    class="w-full h-full object-cover">
-
-                <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition">
-                    <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                        <i class="fas fa-play text-white ml-1"></i>
-                    </div>
-                </div>
-            </div>
-
+        <div class="text-center mb-12">
+            <span class="text-pink-500 text-sm font-semibold uppercase tracking-wider">
+                Short - Reel - TikTok
+            </span>
+            <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">
+                Vertical, rápido, adictivo
+            </h2>
         </div>
+
+        <!-- GRID AUTOMÁTICO -->
+        <div id="shortsContainer"
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        </div>
+
     </div>
 </section>
-    <script>
-function playShort(id, videoId) {
-    const container = document.getElementById(id);
 
-    container.innerHTML = `
-        <iframe 
-            src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1"
-            class="w-full h-full"
-            frameborder="0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-        </iframe>
-    `;
+<script>
+const shortsLinks = [
+    "https://youtube.com/shorts/0Mfu1M1lVzY",
+    "https://youtube.com/shorts/MoccyJraKKg",
+    "https://youtube.com/shorts/ax7iJvqDH-g",
+    "https://youtube.com/shorts/zuGRID-wy9Y",
+    "https://youtube.com/shorts/J0atyeX9Yv8"
+];
+
+// sacar ID del video
+function getId(url) {
+    if (url.includes("/shorts/")) return url.split("/shorts/")[1].split("?")[0];
+    if (url.includes("youtu.be/")) return url.split("youtu.be/")[1].split("?")[0];
+    if (url.includes("watch?v=")) return url.split("watch?v=")[1].split("&")[0];
+    return url;
 }
+
+function renderShorts() {
+    const container = document.getElementById("shortsContainer");
+    container.innerHTML = "";
+
+    shortsLinks.forEach((url) => {
+        const id = getId(url);
+
+        const card = document.createElement("div");
+        card.className =
+            "relative aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group";
+
+        card.innerHTML = `
+            <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg"
+                class="w-full h-full object-cover">
+
+            <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition">
+                <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                    <i class="fas fa-play text-white ml-1"></i>
+                </div>
+            </div>
+        `;
+
+        card.onclick = () => {
+            card.innerHTML = `
+                <iframe 
+                    src="https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1"
+                    class="w-full h-full"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            `;
+        };
+
+        container.appendChild(card);
+    });
+}
+
+renderShorts();
 </script>
             <!-- TEXTO CENTRADO -->
             <div class="text-center mb-12">
