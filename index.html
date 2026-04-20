@@ -409,23 +409,7 @@ function renderVideosBasicos() {
         container.appendChild(card);
     });
 }
-// ================= MODAL VIDEO =================
-    <div id="videoModal"
-    class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
 
-    <div class="relative w-full max-w-5xl px-4">
-
-        <!-- Botón cerrar -->
-        <button id="closeModal"
-            class="absolute -top-12 right-4 text-white text-3xl hover:text-red-500">
-            ✕
-        </button>
-
-        <!-- Contenedor del video -->
-        <div id="modalContent" class="w-full aspect-video"></div>
-
-    </div>
-</div>
 // ================= INIT =================
 renderShorts();
 renderVideosLargos();
@@ -724,8 +708,22 @@ modal.addEventListener("click", (e) => {
         modalContent.innerHTML = "";
     }
 });
-    </script>
+</script>
+<div id="videoModal"
+    class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
 
+    <div class="relative w-full max-w-5xl px-4">
+
+        <button id="closeModal"
+            class="absolute -top-12 right-4 text-white text-3xl hover:text-red-500">
+            ✕
+        </button>
+
+        <div id="modalContent" class="w-full aspect-video"></div>
+
+    </div>
+</div>
+</script>
 </body>
 
 </html>
