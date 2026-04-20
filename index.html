@@ -262,7 +262,7 @@
         </div>
 
         <div id="videosContainer"
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            class="flex flex-wrap justify-center gap-6">
         </div>
 
     </div>
@@ -301,7 +301,6 @@ const shortsLinks = [
 ];
 
 const videosLargos = [
-    "https://www.youtube.com/watch?v=s4SFarjquUk&t=32s",
     "https://www.youtube.com/watch?v=hUSra-_eobQ&t=23s",
     "https://www.youtube.com/watch?v=f6kA8pWx8G0"
     
@@ -368,7 +367,7 @@ function renderVideosLargos() {
         const id = getId(url);
 
         const card = document.createElement("div");
-        card.className = "relative rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group";
+        card.className = "w-full max-w-sm relative rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group";
 
         card.innerHTML = `
             <div class="relative aspect-video overflow-hidden">
