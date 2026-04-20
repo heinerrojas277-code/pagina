@@ -245,6 +245,26 @@
     </div>
 </section>
 
+    <!-- SECCIÓN SHORTS IA -->
+<section id="shortsIA" class="py-24 px-4 bg-black">
+    <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">
+                SHORTS IA [VIRALES]
+            </h2>
+            <p class="text-gray-400">
+                Contenido generado con IA, estilo esqueleto
+            </p>
+        </div>
+
+        <div id="shortsIAContainer"
+            class="flex flex-wrap justify-center gap-6">
+        </div>
+
+    </div>
+</section>
+    
 <!-- SECCIÓN VIDEOS LARGOS DINAMICOS -->
 <section id="videos" class="py-24 px-4 bg-black">
     <div class="max-w-7xl mx-auto">
@@ -312,6 +332,12 @@ const videosBasicos = [
     "https://www.youtube.com/watch?v=s4SFarjquUk&t=32s"
 ];
 
+const shortsIALinks = [
+    "https://youtube.com/shorts/xNLC36wpAe8",
+    "https://youtube.com/shorts/gMHPVxWKk-0",
+    "https://youtube.com/shorts/Q5fNei3gJMQ",
+    "https://youtube.com/shorts/AzJR2phKp94"
+];
 // ================= SACAR ID =================
 function getId(url) {
     if (url.includes("/shorts/")) return url.split("/shorts/")[1].split("?")[0];
@@ -345,6 +371,41 @@ function renderShorts() {
         card.onclick = () => {
     openVideoModal(id);
 };
+
+        container.appendChild(card);
+    });
+}
+
+// ================= SHORTS IA =================
+function renderShortsIA() {
+    const container = document.getElementById("shortsIAContainer");
+    container.innerHTML = "";
+
+    shortsIALinks.forEach(url => {
+        const id = getId(url);
+
+        const card = document.createElement("div");
+        card.className = "w-[200px] flex-shrink-0 relative aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 cursor-pointer group";
+
+        card.innerHTML = `
+            <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg"
+                class="w-full h-full object-cover">
+
+            <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition">
+                <div class="w-14 h-14 bg-pink-600 rounded-full flex items-center justify-center shadow-lg">
+                    <i class="fas fa-play text-white ml-1"></i>
+                </div>
+            </div>
+
+            <!-- Badge IA -->
+            <div class="absolute top-2 left-2 bg-pink-600 text-xs px-2 py-1 rounded-full font-bold">
+                IA
+            </div>
+        `;
+
+        card.onclick = () => {
+            openVideoModal(id);
+        };
 
         container.appendChild(card);
     });
@@ -416,6 +477,7 @@ function renderVideosBasicos() {
 
 // ================= INIT =================
 renderShorts();
+renderShortsIA();
 renderVideosLargos();
 renderVideosBasicos();
 </script>
