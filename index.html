@@ -536,6 +536,19 @@ renderVideosLargos();
     </section>
 
     <script>
+        // BOTÓN VER TRABAJO
+document.getElementById("btnVerTrabajo").addEventListener("click", () => {
+    document.getElementById("videos").scrollIntoView({
+        behavior: "smooth"
+    });
+});
+
+// BOTÓN CONTACTO
+document.getElementById("btnContacto").addEventListener("click", () => {
+    document.getElementById("contacto").scrollIntoView({
+        behavior: "smooth"
+    });
+});
 
         // Animación al scroll
         const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
@@ -625,7 +638,7 @@ renderVideosLargos();
 
     window.open(url, "_blank");
 });
-    </script>
+    </script> 
 </body>
 
 </html>
