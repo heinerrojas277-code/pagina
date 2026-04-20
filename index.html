@@ -375,8 +375,10 @@ function renderVideosLargos() {
         `;
 
         card.onclick = () => {
-    openVideoModal(id);
-            container.appendChild(card);
+            openVideoModal(id);
+        };
+
+        container.appendChild(card); // ✅ AQUÍ VA, fuera del onclick
     });
 }
 
