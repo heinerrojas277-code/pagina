@@ -343,16 +343,8 @@ function renderShorts() {
         `;
 
         card.onclick = () => {
-            card.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1"
-                    class="w-full h-full"
-                    frameborder="0"
-                    allow="autoplay; encrypted-media"
-                    allowfullscreen>
-                </iframe>
-            `;
-        };
+    openVideoModal(id);
+};
 
         container.appendChild(card);
     });
@@ -383,20 +375,8 @@ function renderVideosLargos() {
         `;
 
         card.onclick = () => {
-            card.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${id}?autoplay=1"
-                    class="w-full aspect-video"
-                    frameborder="0"
-                    allow="autoplay; encrypted-media"
-                    allowfullscreen>
-                </iframe>
-            `;
-        };
-
-        container.appendChild(card);
-    });
-}
+    openVideoModal(id);
+};
 
 // ================= VIDEOS LARGOS =================
 function renderVideosBasicos() {
@@ -423,20 +403,29 @@ function renderVideosBasicos() {
         `;
 
         card.onclick = () => {
-            card.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${id}?autoplay=1"
-                    class="w-full aspect-video"
-                    frameborder="0"
-                    allow="autoplay; encrypted-media"
-                    allowfullscreen>
-                </iframe>
-            `;
-        };
+    openVideoModal(id);
+};
 
         container.appendChild(card);
     });
 }
+// ================= MODAL VIDEO =================
+    <div id="videoModal"
+    class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
+
+    <div class="relative w-full max-w-5xl px-4">
+
+        <!-- Botón cerrar -->
+        <button id="closeModal"
+            class="absolute -top-12 right-4 text-white text-3xl hover:text-red-500">
+            ✕
+        </button>
+
+        <!-- Contenedor del video -->
+        <div id="modalContent" class="w-full aspect-video"></div>
+
+    </div>
+</div>
 // ================= INIT =================
 renderShorts();
 renderVideosLargos();
@@ -703,7 +692,40 @@ document.getElementById("btnContacto").addEventListener("click", () => {
 
     window.open(url, "_blank");
 });
-    </script> 
+    const modal = document.getElementById("videoModal");
+const modalContent = document.getElementById("modalContent");
+const closeModal = document.getElementById("closeModal");
+
+// Abrir modal
+function openVideoModal(id) {
+    modal.classList.remove("hidden");
+
+    modalContent.innerHTML = `
+        <iframe 
+            src="https://www.youtube.com/embed/${id}?autoplay=1"
+            class="w-full h-full"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>
+    `;
+}
+ 
+// Cerrar modal
+closeModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    modalContent.innerHTML = "";
+});
+
+// Cerrar al hacer click fuera
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.classList.add("hidden");
+        modalContent.innerHTML = "";
+    }
+});
+    </script>
+
 </body>
 
 </html>
