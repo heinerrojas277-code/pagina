@@ -376,7 +376,9 @@ function renderVideosLargos() {
 
         card.onclick = () => {
     openVideoModal(id);
-};
+            container.appendChild(card);
+    });
+}
 
 // ================= VIDEOS LARGOS =================
 function renderVideosBasicos() {
